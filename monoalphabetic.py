@@ -1,45 +1,15 @@
 import string
 
-# Create mapping
-def create_mapping(key):
-    return dict(zip(string.ascii_lowercase, key.lower()))
-
-# Encrypt
-def mono_encrypt(text, key):
-    mapping = create_mapping(key)
-    result = ""
-
-    for ch in text:
-        if ch.isalpha():
-            new = mapping[ch.lower()]
-            result += new.upper() if ch.isupper() else new
-        else:
-            result += ch
-
-    return result
-
-# Decrypt
-def mono_decrypt(text, key):
-    mapping = create_mapping(key)
-    reverse = {v: k for k, v in mapping.items()}
-    result = ""
-
-    for ch in text:
-        if ch.isalpha():
-            new = reverse[ch.lower()]
-            result += new.upper() if ch.isupper() else new
-        else:
-            result += ch
-
-    return result
-
-
-# Example
 key = "qwertyuiopasdfghjklzxcvbnm"
+
+a = string.ascii_lowercase
+enc_map = str.maketrans(a, key)
+dec_map = str.maketrans(key, a)
+
 msg = "Hello World"
 
-enc = mono_encrypt(msg, key)
-dec = mono_decrypt(enc, key)
+enc = msg.lower().translate(enc_map)
+dec = enc.translate(dec_map)
 
 print("Encrypted:", enc)
 print("Decrypted:", dec)
