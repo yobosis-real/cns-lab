@@ -1,0 +1,16 @@
+ufw status verbose
+
+sudo ufw enable
+
+sudo ufw status
+
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw allow 22
+sudo ufw deny 23
+
+status numbered 
+
+nmap -p 80,443,22,23 172.111.0/145
+
+telnet 172.111.0.145 23
